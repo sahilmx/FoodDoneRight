@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: black;
+        height: auto;
+        margin: 20px;
+        position: absolute;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+      .container {
+        margin: auto;
+        width: fit-content;
+        border: 3px solid rgb(58, 58, 58);
+        padding: 10px;
+        align-items: center;
+        text-align: center;
+        border-radius: 5px;
+        background-color: rgb(78, 77, 77);
+        position: fixed;
+        top: 40vh;
+        left: 40vw;
+      }
+      .container h1 {
+        font-size: larger;
+        color: white;
+      }
+      .container button {
+        padding: 5px 15px;
+        border-radius: 2px;
+        background-color: aqua;
+        color: black;
+        font-size: small;
+        border: none;
+      }
+      .container input {
+        margin: 20px;
+        width: fit-content;
+        padding: 5px 15px;
+        border-radius: 2px;
+      }
+      .container h3 {
+        color: white;
+        font-size: large;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>FoodDoneRight</h1>
+      <input type="text" placeholder="Location .." id="inputLocation" />
+      <button onclick="getOutletIdentyfier()">Submit</button>
+      <h3 id="activity"></h3>
+    </div>
+    <script>
+      function getOutletIdentyfier() {
+        let input = document.getElementById("inputLocation");
+        let locationInfo = input.value;
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("value", locationInfo);
+
+        var requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: urlencoded,
+          redirect: "follow",
+        };
+
+        fetch("/getLoc", requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            console.log({ result });
+            const textNode = document.querySelector("#activity");
+            textNode.textContent = result.resp.toString();
+            input.value = "";
+            console.log(result);
+          })
+          .catch((error) => console.log("error", error));
+      }
+    </script>
+  </body>
+</html>

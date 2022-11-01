@@ -1,0 +1,27 @@
+{
+  "name": "FoodDoneRight",
+  "version": "1.0.0",
+  "description": "It is essential for FoodDoneRight to be able to route incoming orders to the correct restaurants depending on predefined delivery area polygons and the customer's shipping address",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Sahil Yadav",
+  "license": "ISC",
+  "dependencies": {
+    "@tmcw/togeojson": "^5.4.0",
+    "@turf/boolean-point-in-polygon": "^6.5.0",
+    "@turf/turf": "^6.5.0",
+    "ejs": "^3.1.8",
+    "env": "^0.0.2",
+    "express": "^4.18.2",
+    "geojson": "^0.5.0",
+    "global": "^4.4.0",
+    "node-geocoder": "^4.2.0",
+    "node-geojson": "^1.0.2",
+    "nodemon": "^2.0.20",
+    "xhr2": "^0.2.1",
+    "xmldom": "^0.6.0"
+  }
+}
